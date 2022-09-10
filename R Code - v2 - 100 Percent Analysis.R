@@ -18,6 +18,7 @@ library(bbr)
 library(ggplot2)
 library(sjPlot)
 library(ggrepel)
+library(ragg)
 
 ######################## Upload Data ##################
 
@@ -57,6 +58,8 @@ P1<- ggplot2::ggplot(NBA.1, aes(x = fga, y = pts)) +
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption= element_text(hjust = 0),
         legend.position = "bottom") +
+  theme(panel.background = element_rect(fill = 'white', colour = 'white')) +
+  theme(plot.background = element_rect(fill = 'white', colour = 'white')) +
   geom_text_repel(data = subset(NBA.1, fga > 2100 & pts > 2600), aes(label = player), alpha = 1, size = 3,
                   box.padding   = 0.35, 
                   point.padding = 0.5,
@@ -84,6 +87,8 @@ P2<- ggplot() +
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption= element_text(hjust = 0),
         legend.position = "bottom") +
+  theme(panel.background = element_rect(fill = 'white', colour = 'white')) +
+  heme(plot.background = element_rect(fill = 'white', colour = 'white'))  
   geom_text_repel(data = subset(NBA.1, fg_pct_100 > 50 & fga > 1900), aes(x = fga, y = pts, label = player),
                   box.padding   = 0.35, 
                   point.padding = 0.5,
@@ -100,3 +105,5 @@ ggsave(P1,
 ggsave(P2, 
        file = "Figure 2 - 100 Percent.png",
        width = 7, height = 6,  dpi = 300)
+
+
